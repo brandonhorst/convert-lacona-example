@@ -10,8 +10,8 @@ module.exports = function convert (example, imageRoot) {
 }
 
 function mapParseNode (children, imageRoot) {
-  return _.chain(children).map(function () {
-    parseNode(child, imageRoot)
+  return _.chain(children).map(function (child) {
+    return parseNode(child, imageRoot)
   }).join('').value()
 }
 
