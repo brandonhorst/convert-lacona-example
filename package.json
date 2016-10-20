@@ -1,6 +1,6 @@
 {
   "name": "convert-lacona-example",
-  "version": "0.2.2",
+  "version": "0.2.3",
   "description": "Convert strings in Lacona Example Format (markdown-esque) to HTML",
   "main": "index.js",
   "directories": {
