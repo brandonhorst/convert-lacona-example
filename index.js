@@ -20,7 +20,7 @@ function parseNode (node, imageRoot) {
     case 'Str':
       return '<span class="string">' + escapeHTML(node.value) + '</span>'
     case 'Image':
-      return '<img class="image" src="' + escapeHTML(join(imageRoot, node.url)) + '" />'
+      return '<img class="image" src="' + escapeHTML(encodeURI(join(imageRoot, node.url))) + '" />'
     case 'Emphasis':
       return '<span class="category-symbol">' + mapParseNode(node.children, imageRoot) + '</span>'
     case 'Link':

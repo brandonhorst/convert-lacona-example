@@ -13,4 +13,10 @@ describe('convert', function () {
     var html = convert(example, '/tmp')
     expect(html).to.equal('<div class="example"><span class="string">open </span><img class="image" src="/tmp/img/clipboard.png" /><span class="argumentSegment argument-clipboard-url"><span class="argument">clipboard url</span><span class="content"><span class="category-symbol"><span class="string">clipboard</span></span></span></span><span class="string"> in </span><span class="placeholder argument-application">application</span></div>')
   })
+
+  it('works with paths with spaces', function () {
+    var example = 'open ![](img/clip board.png)[*clipboard*](clipboard url) in [](application)'
+    var html = convert(example, '/tmp')
+    expect(html).to.equal('<div class="example"><span class="string">open </span><img class="image" src="/tmp/img/clip%20board.png" /><span class="argumentSegment argument-clipboard-url"><span class="argument">clipboard url</span><span class="content"><span class="category-symbol"><span class="string">clipboard</span></span></span></span><span class="string"> in </span><span class="placeholder argument-application">application</span></div>')
+  })
 })
