@@ -2,6 +2,7 @@ var _ = require('lodash')
 var markdownToAST = require('markdown-to-ast').parse
 var escapeHTML = require('escape-html')
 var join = require('path').join
+var hashArgument = require('colorize-lacona-argument')
 
 module.exports = function convert (example, imageRoot) {
   var trueImageRoot = imageRoot || ''
@@ -24,16 +25,16 @@ function parseNode (node, imageRoot) {
     case 'Emphasis':
       return '<span class="category-symbol">' + mapParseNode(node.children, imageRoot) + '</span>'
     case 'Link':
-      const urlClass = escapeHTML(_.kebabCase(node.url))
+      const argumentNumber = hashArgument(node.url)
       if (node.children.length) {
         return (
-          '<span class="argumentSegment argument-' + urlClass + '">' + 
+          '<span class="argumentSegment category-argument' + argumentNumber + '">' + 
             '<span class="argument">' + escapeHTML(node.url) + '</span>' +
             '<span class="content">' + mapParseNode(node.children, imageRoot) + '</span>' +
           '</span>'
         )
       } else {
-        return '<span class="placeholder argument-' + urlClass + '">' + escapeHTML(node.url) + '</span>'
+        return '<span class="placeholder category-argument' + argumentNumber + '">' + escapeHTML(node.url) + '</span>'
       }
     case 'Paragraph':
       return '<div class="example">' + mapParseNode(node.children, imageRoot) + '</div>'

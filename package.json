@@ -7,6 +7,7 @@
     "test": "test"
   },
   "dependencies": {
+    "colorize-lacona-argument": "^0.1.0",
     "escape-html": "^1.0.3",
     "lodash": "^4.16.4",
     "markdown-to-ast": "^3.4.0"
