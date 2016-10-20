@@ -3,9 +3,10 @@ var markdownToAST = require('markdown-to-ast').parse
 var escapeHTML = require('escape-html')
 var join = require('path').join
 
-module.exports = function convert (example, imageRoot = '') {
+module.exports = function convert (example, imageRoot) {
+  var trueImageRoot = imageRoot || ''
   var ast = markdownToAST(example)
-  return parseNode(ast, imageRoot)
+  return parseNode(ast, trueImageRoot)
 }
 
 function mapParseNode (children, imageRoot) {
