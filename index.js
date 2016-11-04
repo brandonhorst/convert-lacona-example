@@ -1,7 +1,7 @@
 var _ = require('lodash')
 var markdownToAST = require('markdown-to-ast').parse
 var escapeHTML = require('escape-html')
-var join = require('path').join
+var resolve = require('path').resolve
 var hashArgument = require('colorize-lacona-argument')
 
 module.exports = function convert (example, imageRoot) {
@@ -21,7 +21,7 @@ function parseNode (node, imageRoot) {
     case 'Str':
       return '<span class="string">' + escapeHTML(node.value) + '</span>'
     case 'Image':
-      return '<img class="image" src="' + escapeHTML(encodeURI(join(imageRoot, node.url))) + '" />'
+      return '<img class="image" src="' + escapeHTML(encodeURI(resolve(imageRoot, node.url))) + '" />'
     case 'Emphasis':
       return '<span class="category-symbol">' + mapParseNode(node.children, imageRoot) + '</span>'
     case 'Link':
