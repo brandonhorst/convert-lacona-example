@@ -21,7 +21,8 @@ function parseNode (node, imageRoot) {
     case 'Str':
       return '<span class="string">' + escapeHTML(node.value) + '</span>'
     case 'Image':
-      return '<img class="image" src="' + escapeHTML(encodeURI(resolve(imageRoot, node.url))) + '" />'
+      const image = _.startsWith(node.url, 'http') ? node.url : resolve(imageRoot, node.url)
+      return '<img class="image" src="' + escapeHTML(encodeURI(image)) + '" />'
     case 'Emphasis':
       return '<span class="category-symbol">' + mapParseNode(node.children, imageRoot) + '</span>'
     case 'Link':
